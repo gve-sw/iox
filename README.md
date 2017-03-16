@@ -42,3 +42,7 @@ You will find the corresponding folders for each step.
 
 ### Sample Application - coming soon
 Coming soon
+
+### License
+
+* TBD

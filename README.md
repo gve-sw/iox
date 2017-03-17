@@ -33,7 +33,7 @@ You will find the corresponding folders for each step.
 ### API Documentation
 * [IOT - IOx SEVT Demo, Understanding the Developer’s Perspective (SalesConnect)](https://salesconnect.cisco.com/#/content-detail/e4316afa-ed5b-411b-a457-37eebc80bbe0)
 * [IoT - IoT Data Connect + EAF (SalesConnect)](https://salesconnect.cisco.com/#/content-detail/f9008eaa-094b-4e21-acc2-64bb42adc238)
-* [Cisco DevNet: IOx](https://developer.cisco.com/site/iox/)\
+* [Cisco DevNet: IOx](https://developer.cisco.com/site/iox/)
 * [Cisco DevNet: IoT Data Connect](https://learninglabs.cisco.com/tracks/iotdc)
 * [GVE-IoT Connected Machines Q&A (Internal Jive)](https://cisco.jiveon.com/docs/DOC-1644628)
 

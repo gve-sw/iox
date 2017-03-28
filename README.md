@@ -24,7 +24,7 @@ You will find the corresponding folders for each step.
 
 
 
-## Products in this project
+### Products in this project
 * [Cisco IOx](http://www.cisco.com/c/en/us/products/cloud-systems-management/iox/index.html)
 * [Cisco Edge Analytics Fabric](http://www.cisco.com/c/en/us/products/analytics-automation-software/edge-analytics-fabric/index.html)
 

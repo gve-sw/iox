@@ -1,0 +1,25 @@
+# All the configs should be automatically set from Fog Director Portal 
+[_cisco_mqtt_attributes]
+mqtt.broker : 10.40.52.52:1883 
+gw.id : cisco
+gw.password : Cisco123
+device1.id:0xb827eb07f96eL
+device1.tag : temperature
+device1.topic.observation : /dfRobot/temperature
+device1.topic.command : /dfRobot/command
+device1.topic.config : /dfRobot/config
+device2.id: dfRobot
+device2.tag : humidity
+device2.topic.observation : /dfRobot/humidity
+device2.topic.command : /dfRobot/command1
+device2.topic.config : /dfRobot/config1
+publish.interval:1
+sliding.window:5
+flask.ip: 10.40.52.40 
+flask.port:5000
+
+[logging]
+# DEBUG:10, INFO: 20, WARNING: 30, ERROR: 40, CRITICAL: 50, NOTSET: 0
+log_level: 10
+# Enable/disable logging to stdout
+console: yes 

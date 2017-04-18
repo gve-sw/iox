@@ -1,2 +1,2 @@
-def setMaxSize(size):
-    self.maxSize = size
+def setMaxSize(maxSize):
+    self.maxSize = maxSize

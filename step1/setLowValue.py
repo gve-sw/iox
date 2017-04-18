@@ -1,2 +1,2 @@
-def setLowValue(low):
-    self.low = low
+def setLowValue(lowValue):
+    self.lowValue = lowValue

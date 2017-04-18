@@ -11,6 +11,9 @@ class IOTWrapper():
         self.bearer = bearer
         self.arrayOfValues = []
 
+
+## Monitor methods
+
     def addValue(self, value):
         self.arrayOfValues.append(value)
         return len(self.arrayOfValues)
@@ -24,8 +27,30 @@ class IOTWrapper():
             return True
         return False
 
+    def monitorSize(self):
+        if (len(self.arrayOfValues) >= self.maxSize):
+            self.resetValues()
+            return True
+        return False
+
     def resetValues(self):
         self.arrayOfValues = []
+
+
+## Setter Methods
+
+    def setHighValue(self, highValue):
+        self.highValue = highValue
+
+    def setLowValue(self, lowValue):
+        self.lowValue = lowValue
+
+    def setMaxSize(self, maxSize):
+        self.maxSize = maxSize
+
+
+
+## Spark Methods
 
     def sendSparkMessage(self, message):
         self.sendSparkPOST("https://api.ciscospark.com/v1/messages", {"roomId": self.roomId, "text": message})
@@ -37,15 +62,6 @@ class IOTWrapper():
         request.add_header("Authorization", "Bearer "+ self.bearer)
         contents = urllib2.urlopen(request).read()
         return contents
-
-    def setHighValue(self, highValue):
-        self.highValue = highValue
-
-    def setLowValue(self, lowValue):
-        self.lowValue = lowValue
-
-    def setMaxSize(self, maxSize):
-        self.maxSize = maxSize
 
     def test_messages(self):
         self.sendSparkMessage("Test Message")

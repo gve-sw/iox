@@ -1,2 +1,2 @@
-def resetValues():
+def resetValues(self):
     self.arrayOfValues = []

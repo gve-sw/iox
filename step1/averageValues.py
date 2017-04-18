@@ -1,2 +1,2 @@
-def averageValues(arrayOfValues):
-    return (sum(arrayOfValues)/len(arrayOfValues))
+def averageValues(self):
+    return (sum(self.arrayOfValues)/len(self.arrayOfValues))

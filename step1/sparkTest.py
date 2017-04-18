@@ -1,2 +1,2 @@
-def test_messages():
-    sendSparkMessage("my temporary room ID", "Hello")
+def test_messages(self):
+    self.sendSparkMessage("my temporary room ID", "Hello")

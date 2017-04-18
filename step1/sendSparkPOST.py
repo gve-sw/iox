@@ -1,7 +1,7 @@
 import urllib2
 import json
 
-def sendSparkPOST(url, data):
+def sendSparkPOST(self, url, data):
     request = urllib2.Request(url, json.dumps(data),
         headers={"Accept" : "application/json",
                  "Content-Type":"application/json"})

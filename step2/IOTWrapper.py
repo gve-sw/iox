@@ -65,3 +65,4 @@ class IOTWrapper():
 
     def test_messages(self):
         self.sendSparkMessage("Test Message")
+        

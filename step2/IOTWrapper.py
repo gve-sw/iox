@@ -49,7 +49,6 @@ class IOTWrapper():
         self.maxSize = maxSize
 
 
-
 ## Spark Methods
 
     def sendSparkMessage(self, message):
@@ -65,4 +64,3 @@ class IOTWrapper():
 
     def test_messages(self):
         self.sendSparkMessage("Test Message")
-        

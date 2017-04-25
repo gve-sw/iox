@@ -9,14 +9,19 @@ from flask import Flask, jsonify
 from uuid import getnode as get_mac
 import sensor 
 import time
+from IOTWrapper import IOTWrapper
 import sys
 import argparse
 import urllib2
 import json
 
 app = Flask(__name__, static_url_path='', static_folder="static")
-roomId = "Y2lzY29zcGFyazovL3VzL1JPT00vMjIyYTE3MjAtMjMwMi0xMWU3LWE1ZDMtYmQ4ODU5YjY3ODc4"
-bearer = "YzY2ZTMzNWEtOWVkYy00NDlhLThkZmYtZTNiZDQ3NTkyYTdjMDFkNjkzNTEtY2Y3"
+# roomId = "Y2lzY29zcGFyazovL3VzL1JPT00vMjIyYTE3MjAtMjMwMi0xMWU3LWE1ZDMtYmQ4ODU5YjY3ODc4"
+# bearer = "YzY2ZTMzNWEtOWVkYy00NDlhLThkZmYtZTNiZDQ3NTkyYTdjMDFkNjkzNTEtY2Y3"
+# maxSize = 100
+# highValue = 120.0
+# lowValue = 60.0
+myWrapper = None
 
 @app.route('/status')
 def status():
@@ -45,20 +50,36 @@ def sendSparkPOST(url, data):
     contents = urllib2.urlopen(request).read()
     return contents
 
-def sendSparkMessage(roomId, message):
-    sendSparkPOST("https://api.ciscospark.com/v1/messages", {"roomId": roomId, "text": message})
+# def sendSparkMessage(roomId, message):
+#     sendSparkPOST("https://api.ciscospark.com/v1/messages", {"roomId": roomId, "text": message})
 
 @app.route('/test')
-def test_messages():
-    sendSparkMessage("my temporary room ID", "Hello")
+def test_messages(message):
+    myWrapper.sendSparkMessage(message)
 
+@app.route('/generate')
+def pull_temperature():
+    message = sensor.get_data('temperature')
+    myWrapper.sendSparkMessage(message)
+    return app.send_static_file('index.html')
 
-@app.route('/message/<messages>')
-def show_messages(messages):
-    try:
-        t = sensor.set_data('messages', messages)
-    except Exception as e:
-        return jsonify({'Status':'Error!'})
+@app.route('/initialize')
+def initializeSensor(maxSize = 100, highValue = 120.0, lowValue = 60.0, roomId = "Y2lzY29zcGFyazovL3VzL1JPT00vMjIyYTE3MjAtMjMwMi0xMWU3LWE1ZDMtYmQ4ODU5YjY3ODc4", bearer = "YzY2ZTMzNWEtOWVkYy00NDlhLThkZmYtZTNiZDQ3NTkyYTdjMDFkNjkzNTEtY2Y3"):
+    # message = sensor.get_data('temperature')
+    myWrapper = IOTWrapper(maxSize, highValue, lowValue, roomId, bearer)
+    myWrapper.sendSparkMessage("I am initialized with an interval of " + str(maxSize) + " seconds\n"
+        "a high temperature of " + str(highValue) + " degrees Fahrenheit\n"
+        "and a low temperature of " + str(lowValue) + " degrees Fahrenheit\n"
+        )
+
+    return app.send_static_file('index.html')
+
+# @app.route('/message/<messages>')
+# def show_messages(messages):
+#     try:
+#         t = sensor.set_data('messages', messages)
+#     except Exception as e:
+#         return jsonify({'Status':'Error!'})
 
 @app.route('/')
 def index():
@@ -71,6 +92,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     try:
         app.run(host='0.0.0.0', port=args.port, debug=True)
+        # while True:
+
+
+
     except Exception as e:
         print 'Flask Launch Error! Check port number'
         sys.exit(2)

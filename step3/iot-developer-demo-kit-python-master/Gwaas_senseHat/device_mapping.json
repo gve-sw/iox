@@ -1,0 +1,8 @@
+{
+	"resources": {
+		"cpu": "25",
+		"memory": "50",
+		"disk": "100",
+		"network": [{"interface-name": "eth0", "network-name": "iox-bridge0"}]
+	}
+}

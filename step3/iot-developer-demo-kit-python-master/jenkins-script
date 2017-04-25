@@ -1,0 +1,18 @@
+#!/bin/sh
+python --version
+cd Gwaas_senseHat/
+virtualenv demo_kit_test
+source demo_kit_test/bin/activate
+pip install -r requirements.txt
+export VERSION=1.0.${BUILD_NUMBER}
+sed -i -- \'s/\\sversion:.*/ version: \"\'${VERSION}\'\"/g\' \"package.yaml\"
+./build_iox_package.sh
+cd ./test
+pip install coverage
+pip install flask
+python test_web_stub.py &
+python test_web_stub.py -p 5100 -i 0x234567 &
+coverage run test_gwaas_sensehat.py 
+coverage xml
+mv .coverage coverage.xml ..
+cd ../..

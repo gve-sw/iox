@@ -3,7 +3,7 @@ import json
 
 class IOTWrapper():
 
-    def IOTWrapper(self, maxSize, highValue, lowValue, roomId, bearer):
+    def __init__(self, maxSize, highValue, lowValue, roomId, bearer):
         self.maxSize = maxSize
         self.highValue = highValue
         self.lowValue = lowValue

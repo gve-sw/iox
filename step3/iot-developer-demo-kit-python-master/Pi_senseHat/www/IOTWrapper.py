@@ -23,13 +23,22 @@ class IOTWrapper():
 
     def monitorAverage(self):
         average = self.averageValues()
+        self.resetValues()
         if (average >= self.highValue) or (average <= self.lowValue):
             return True
         return False
 
+    def getHigh(self):
+        return self.highValue
+
+    def getLow(self):
+        return self.lowValue
+
+    def getMaxSize(self):
+        return self.maxSize
+
     def monitorSize(self):
         if (len(self.arrayOfValues) >= self.maxSize):
-            self.resetValues()
             return True
         return False
 

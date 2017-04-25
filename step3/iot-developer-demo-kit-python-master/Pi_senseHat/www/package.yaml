@@ -1,0 +1,24 @@
+descriptor-schema-version: "2.2"
+
+info:
+ name: iox_docker_python_ll
+ description: "You know what it is"
+ version: "1.0"
+ author-link: "http://shootinstraight3d.appspot.com/"
+ author-name: "Steven Yee"
+
+app:
+ cpuarch: "x86_64"
+ type: docker
+ resources:
+   profile: c1.small
+   network:
+     -
+       interface-name: eth0
+       ports:
+         tcp:
+           - 8000
+
+ startup:
+   rootfs: rootfs.tar
+   target: ["python3 app.py"]

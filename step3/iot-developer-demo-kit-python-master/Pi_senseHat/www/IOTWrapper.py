@@ -67,19 +67,7 @@ class IOTWrapper():
         url = "https://api.ciscospark.com/v1/messages"
         header = {'Content-type': 'application/json; charset=utf-8',
                   'Authorization': 'Bearer ' + self.bearer}
-
         requests.post(url, headers=header, data=json.dumps(data))
-
-    # def sendSparkPOST(self, , data):
-    #     thisToken = "Bearer "+ self.bearer
-    #     request = urllib2.Request(url, json.dumps(data).encode('utf-8'),
-    #         headers={"Accept" : "application/json",
-    #                  "Content-Type":"application/json",
-    #                  "Authorization" : thisToken})
-    #     # request.add_header("Authorization", "Bearer "+ self.bearer)
-    #     # binary_data = request.encode('utf-8')
-    #     contents = urllib2.urlopen(request).read()
-    #     return contents
 
     def test_messages(self):
         self.sendSparkMessage("Test Message")

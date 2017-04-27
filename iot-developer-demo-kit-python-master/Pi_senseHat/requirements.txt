@@ -1,2 +1,0 @@
-flask
-sense_hat

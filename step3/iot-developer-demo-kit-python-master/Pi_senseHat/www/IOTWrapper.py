@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request as urllib2
 import json
 
 class IOTWrapper():
@@ -64,10 +64,13 @@ class IOTWrapper():
         self.sendSparkPOST("https://api.ciscospark.com/v1/messages", {"roomId": self.roomId, "text": message})
 
     def sendSparkPOST(self, url, data):
-        request = urllib2.Request(url, json.dumps(data),
+        thisToken = "Bearer "+ self.bearer
+        request = urllib2.Request(url, json.dumps(data).encode('utf-8'),
             headers={"Accept" : "application/json",
-                     "Content-Type":"application/json"})
-        request.add_header("Authorization", "Bearer "+ self.bearer)
+                     "Content-Type":"application/json",
+                     "Authorization" : thisToken})
+        # request.add_header("Authorization", "Bearer "+ self.bearer)
+        # binary_data = request.encode('utf-8')
         contents = urllib2.urlopen(request).read()
         return contents
 

@@ -1,7 +1,7 @@
 descriptor-schema-version: "2.2"
 
 info:
- name: iox_docker_python_ll
+ name: iox_docker_python_yeesty
  description: "You know what it is"
  version: "1.0"
  author-link: "http://shootinstraight3d.appspot.com/"
